@@ -7,20 +7,29 @@ public class ListaArray implements EstruturaElementar{
     private int[] array;
     private int indice_fim;
 
-    public ListaArray() {
-
+    public ListaArray(int indice_fim) {
+        this.array = new int[indice_fim];
+        this.indice_fim = indice_fim;
     }
 
     @Override
     public boolean buscaElemento(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscaElemento'");
+        for(int i = 0; i == this.array.length; i++){
+            if(this.array[i] == valor){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public int buscaIndice(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscaIndice'");
+        for(int i = 0; i == this.array.length; i++){
+            if(this.array[i] == valor){
+                return i;
+            }
+        }
+        return i;
     }
 
     @Override
