@@ -7,16 +7,15 @@ public class ListaArray implements EstruturaElementar{
     private int[] array;
     private int indice_fim;
 
-    public ListaArray(int indice_fim) {
-        this.array = new int[indice_fim];
-        this.indice_fim = indice_fim;
-    }
+    public ListaArray() {}
 
     @Override
     public boolean buscaElemento(int valor) {
-        for(int i = 0; i == this.array.length; i++){
-            if(this.array[i] == valor){
-                return true;
+        if(this.array != null){
+            for(int i : this.array){
+                if(i == valor){
+                    return true;
+                }
             }
         }
         return false;
@@ -24,12 +23,7 @@ public class ListaArray implements EstruturaElementar{
 
     @Override
     public int buscaIndice(int valor) {
-        for(int i = 0; i == this.array.length; i++){
-            if(this.array[i] == valor){
-                return i;
-            }
-        }
-        return i;
+        return this.array[valor];
     }
 
     @Override
@@ -58,8 +52,20 @@ public class ListaArray implements EstruturaElementar{
 
     @Override
     public void insereElemento(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereElemento'");
+         if(this.array != null){
+            int[] obj = new int[this.array.length + 1];
+            for(int i : this.array){
+                obj[i] = i;
+            }
+            obj[indice_fim + 1] = valor;
+            this.array = obj;
+            this.indice_fim = this.array.length - 1;
+        }
+        else{
+            this.array = new int[1];
+            this.array[0] = valor;
+            this.indice_fim = 0;
+        }
     }
 
     @Override
@@ -70,21 +76,55 @@ public class ListaArray implements EstruturaElementar{
 
     @Override
     public void insereInicio(int valor) {
-        for (int i = indice_fim - 1; i > 0; i--)
-            array[i] = array[i+1];
-        array[0] = valor;
+        if(this.array != null){
+            int[] obj = new int[this.array.length + 1];
+            for(int i : this.array){
+                obj[i + 1] = i;
+            }
+            obj[0] = valor;
+            this.array = obj;
+            this.indice_fim = this.array.length - 1;
+        }
+        else{
+            this.array = new int[1];
+            this.array[0] = valor;
+            this.indice_fim = 0;
+        }
     }
 
     @Override
     public void insereFim(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereFim'");
+        if(this.array != null){
+            int[] obj = new int[this.array.length + 1];
+            for(int i : this.array){
+                obj[i] = i;
+            }
+            obj[indice_fim + 1] = valor;
+            this.array = obj;
+            this.indice_fim = this.array.length - 1;
+        }
+        else{
+            this.array = new int[1];
+            this.array[0] = valor;
+            this.indice_fim = 0;
+        }
     }
 
     @Override
     public void remove(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        int[] obj = new int[this.array.length - 1];
+        for(int i = 0; i < indice_fim; i++){
+            if(this.array[i] != valor){
+                obj[i] = this.array[i];            
+            }
+            else{
+                if(i + 1 < obj.length){
+                    obj[i] = this.array[i + 1];
+                }
+            }    
+        }
+        this.array = obj;
+        indice_fim = obj.length - 1;
     }
 
     @Override
